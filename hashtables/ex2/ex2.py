@@ -14,26 +14,23 @@ def reconstruct_trip(tickets, length):
 #Understand
     # Testcase given
 
-#Plan
-    # Setup tickets hash table
-    # Iterate through the tickets
-        # Set the source as the key & destination as the value
-    
-    # Set up route list
-    # Initialize with the first location
-
-    # Find the next destination based on the previous location
-        # and append to the route
-
+# Plan
 # Execute
+    # Setup tickets hash table
     hash_tickets = {}
 
+    # Iterate through the tickets
     for ticket in tickets:
+        # Set the source as the key & destination as the value
         hash_tickets[ticket.source] = ticket.destination
 
+    # Set up route list
+    # Initialize with the first location
     route = [hash_tickets["NONE"]] #[0:"LAX"]
 
+    # Find the next destination based on the previous location
     for i in range(1, length):     
+        # and append to the route
         route.append(hash_tickets[route[i - 1]]) # [0:"LAX", 1: "SFO", 2: "BHM", etc...] # find key: LAX(destination) in dict to get value "SFO"
 
     return route
